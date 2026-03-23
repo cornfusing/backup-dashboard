@@ -41,7 +41,9 @@ def create_event(event: EventIn):
     insert_event(ts, event.source, event.event, event.message)
 
     send_discord_notification(
-        f"[{event.source.upper()}] {event.event} - {event.message or ''}".strip()
+        source=event.source,
+        event=event.event,
+        message=event.message,
     )
 
     return {"ok": True, "timestamp": ts}
